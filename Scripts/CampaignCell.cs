@@ -21,11 +21,19 @@ public class CampaignCell : MonoBehaviour {
     {
         cell = gameObject.GetComponent<CampaignCell>();
 
-        GameManager.ChangePanel(GameManager.UIS[GameManager.CAMPAIGN], GameManager.UIS[GameManager.BATTLE],0);
+        //GameManager.ChangePanel(GameManager.UIS[GameManager.CAMPAIGN], GameManager.UIS[GameManager.BATTLE],0);
+
+		GameObject battle = Resources.Load ("Battle") as GameObject;
+		GameObject b = NGUITools.AddChild (GameObject.Find ("UI Root"), battle);
+		b.GetComponent<Battle_C> ().Enter (GameManager.UIS [GameManager.CAMPAIGN].GetComponent<Campaign_C> ().VirusID, cell.CellID, Modes.Campaign);
+		Formula.UI_IsVisible(GameManager.UIS[GameManager.CAMPAIGN],false);
+
+		AudioManager.playMusicByName(AudioManager.BattleBG);
+
 
         //传递关卡参数
-        GameObject.Find(GameManager.BATTLE).GetComponent<Battle_C>().Enter(GameManager.UIS[GameManager.CAMPAIGN].GetComponent<Campaign_C>().VirusID, cell.CellID,Modes.Campaign);
+        //GameObject.Find(GameManager.BATTLE).GetComponent<Battle_C>().Enter(GameManager.UIS[GameManager.CAMPAIGN].GetComponent<Campaign_C>().VirusID, cell.CellID,Modes.Campaign);
 
-        AudioManager.playMusicByName(AudioManager.BattleBG);
+        //AudioManager.playMusicByName(AudioManager.BattleBG);
     }
 }

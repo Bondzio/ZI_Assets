@@ -68,12 +68,12 @@ public class Zombie : MonoBehaviour{
 
     private void FixedUpdate()
     {
-        if (GameManager.BC.BattleState == BattleState.Start)
+        if (Battle.BattleState == BattleState.Start)
         {
             //开始阶段的游戏提示显示
         }
 
-        if (GameManager.BC.BattleState == BattleState.Game)
+        if (Battle.BattleState == BattleState.Game)
         {
             updateInterval++;
             if(updateInterval == UPDATE_INDEX_SELF)
@@ -162,7 +162,7 @@ public class Zombie : MonoBehaviour{
             
         }
 
-        if (GameManager.BC.BattleState == BattleState.End)
+        if (Battle.BattleState == BattleState.End)
         {
 
         }
@@ -172,7 +172,7 @@ public class Zombie : MonoBehaviour{
     void RandomSingleAttack()
     {
         //Debug.Log("Zombie-RandomSingleAttack");
-        if (GameManager.BC.HumanArray.Count > 0)
+        if (Battle.HumanArray.Count > 0)
         {
             GameObject human = Formula.ArrayListRandomElement(Battle.HumanArray) as GameObject;
             Human aHuman = human.GetComponent<Human>();
@@ -192,19 +192,19 @@ public class Zombie : MonoBehaviour{
 
     void GenerateSEInGameobjectPosition(GameObject go, SEType seType, bool isSelfActive, string invokeName)
     {
-        //GameObject se = NGUITools.AddChild(GameManager.BC.Entity, (GameObject)(Resources.Load("SEPrefabs" + "/" + seName)));
+        //GameObject se = NGUITools.AddChild(Battle.Entity, (GameObject)(Resources.Load("SEPrefabs" + "/" + seName)));
         GameObject se = null;
         switch (seType)
         {
             case SEType.Skill:
-                se = NGUITools.AddChild(GameManager.BC.Entity, skillSEGO);
+                se = NGUITools.AddChild(Battle.Entity, skillSEGO);
                 break;
             case SEType.Die:
-                se = NGUITools.AddChild(GameManager.BC.Entity, dieSEGO);
+                se = NGUITools.AddChild(Battle.Entity, dieSEGO);
                 break;
         }
         se.transform.localScale = new Vector3(80, 80, 1);        //该死的Unity，把动画文件加载的时候默认缩小为1/100了，所以这里要扩大100倍。注意，改Prefabs的缩放比例是没用的
-        NGUITools.SetDirty(GameManager.BC.Entity);
+        NGUITools.SetDirty(Battle.Entity);
         Transform desGO = go.GetComponent<Transform>();
         se.transform.localPosition = desGO.localPosition;
 
@@ -219,9 +219,9 @@ public class Zombie : MonoBehaviour{
     void RandomSingleHeal()
     {
         //Debug.Log("Zombie-RandomSingleHeal");
-        if (GameManager.BC.ZombieArray.Count > 0)
+        if (Battle.ZombieArray.Count > 0)
         {
-            GameObject zombie = Formula.ArrayListRandomElement(GameManager.BC.ZombieArray) as GameObject;
+            GameObject zombie = Formula.ArrayListRandomElement(Battle.ZombieArray) as GameObject;
             Zombie aZombie = zombie.GetComponent<Zombie>();
             aZombie.HP += Heal * param / 1000;
             if (aZombie.HP >= aZombie.MaxHP)
@@ -234,9 +234,9 @@ public class Zombie : MonoBehaviour{
     void RandomSingle_AttackInfect()
     {
         //Debug.Log("Zombie-RandomSingle_AttackInfect");
-        if (GameManager.BC.HumanArray.Count > 0)
+        if (Battle.HumanArray.Count > 0)
         {
-            GameObject human = Formula.ArrayListRandomElement(GameManager.BC.HumanArray) as GameObject;
+            GameObject human = Formula.ArrayListRandomElement(Battle.HumanArray) as GameObject;
             Human aHuman = human.GetComponent<Human>();
 
             if (Atk * param / 1000 >= aHuman.Def)
@@ -257,7 +257,7 @@ public class Zombie : MonoBehaviour{
 
     void ZombieVanish()
     {
-        GameManager.BC.ZombieArray.Remove(gameObject);
+        Battle.ZombieArray.Remove(gameObject);
         Destroy(gameObject);
     }
 

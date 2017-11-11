@@ -23,8 +23,8 @@ public class GameManager :MonoBehaviour {
     public static string FilePathName;  //存档地址
     public static Dictionary<string, GameObject> UIS = new Dictionary<string, GameObject>();        //建立UI数据库
 
-    public static GameObject Battle;
-    public static Battle_C BC;
+    //public static GameObject Battle;
+    //public static Battle_C BC;
 	public static int StandardWidth = 1920;
 	public static int StandardHeight = 1080;
 
@@ -107,11 +107,11 @@ public class GameManager :MonoBehaviour {
         UIS.Add(VIRUSSELECT, GameObject.Find(VIRUSSELECT));
         UIS.Add(CAMPAIGN, GameObject.Find(CAMPAIGN));
         UIS.Add(CAMPAIGNRESULT, GameObject.Find(CAMPAIGNRESULT));
-        UIS.Add(BATTLE, GameObject.Find(BATTLE));
+        //UIS.Add(BATTLE, GameObject.Find(BATTLE));
 		//UIS.Add(CASINO, GameObject.Find(CASINO));
 
-        Battle = GameObject.Find(BATTLE);
-        BC = Battle.GetComponent<Battle_C>();
+        //Battle = GameObject.Find(BATTLE);
+        //BC = Battle.GetComponent<Battle_C>();
 
         //设置界面的初始位置
         /*

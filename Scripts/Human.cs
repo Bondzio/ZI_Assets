@@ -330,19 +330,19 @@ public class Human : MonoBehaviour{
 
     void GenerateSEInGameobjectPosition(GameObject go, SEType seType, bool isSelfActive,string invokeName)
     {
-        //GameObject se = NGUITools.AddChild(GameManager.BC.Entity, (GameObject)(Resources.Load("SEPrefabs" + "/" + seName)));
+        //GameObject se = NGUITools.AddChild(Battle.Entity, (GameObject)(Resources.Load("SEPrefabs" + "/" + seName)));
         GameObject se = null;
         switch (seType)
         {
             case SEType.Skill:
-                se = NGUITools.AddChild(GameManager.BC.Entity, skillSEGO);
+                se = NGUITools.AddChild(Battle.Entity, skillSEGO);
                 break;
             case SEType.Die:
-                se = NGUITools.AddChild(GameManager.BC.Entity, dieSEGO);
+                se = NGUITools.AddChild(Battle.Entity, dieSEGO);
                 break;
         }
         se.transform.localScale = new Vector3(80, 80, 1);        //该死的Unity，把动画文件加载的时候默认缩小为1/100了，所以这里要扩大100倍。注意，改Prefabs的缩放比例是没用的
-        NGUITools.SetDirty(GameManager.BC.Entity);
+        NGUITools.SetDirty(Battle.Entity);
         Transform desGO = go.GetComponent<Transform>();
         se.transform.localPosition = desGO.localPosition;
 
@@ -357,7 +357,7 @@ public class Human : MonoBehaviour{
     void RandomSingleHeal()
     {
         //Debug.Log("Human-RandomSingleHeal");
-        if (GameManager.BC.HumanArray.Count > 0)
+        if (Battle.HumanArray.Count > 0)
         {
             GameObject human = Formula.ArrayListRandomElement(Battle.HumanArray) as GameObject;
             Human aHuman = human.GetComponent<Human>();
@@ -372,9 +372,9 @@ public class Human : MonoBehaviour{
     void RandomSingle_HealCure()
     {
         //Debug.Log("Human-RandomSingle_HealCure");
-        if (GameManager.BC.HumanArray.Count > 0)
+        if (Battle.HumanArray.Count > 0)
         {
-            GameObject human = Formula.ArrayListRandomElement(GameManager.BC.HumanArray) as GameObject;
+            GameObject human = Formula.ArrayListRandomElement(Battle.HumanArray) as GameObject;
             Human aHuman = human.GetComponent<Human>();
 
             aHuman.HP += Heal * param / 1000;

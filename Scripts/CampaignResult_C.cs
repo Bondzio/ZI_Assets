@@ -25,20 +25,24 @@ public class CampaignResult_C : MonoBehaviour {
     public int InfectKillNum = 0;
     public int ZombieKillNum = 0;
 
+	Battle_C BC;
+
     public GameObject CampaignResult_BackBtn;
     List<Loot_Sheet> loot = new List<Loot_Sheet>();
 
     private void Start()
     {
         UIEventListener.Get(CampaignResult_BackBtn).onClick = CampaignResult_BackBtn_Click;
+		//BC = GameObject.Find ("Battle").GetComponent<Battle_C>();
     }
 
     public void Enter(bool flag)
     {
+		BC = GameObject.Find ("Battle").GetComponent<Battle_C>();
         //产生掉落 generate loot
         foreach(Mission_Sheet ms in DataManager.Mission_Parameter)
         {
-            if(ms.MissionID == GameManager.BC.MissionID.ToString())
+            if(ms.MissionID == BC.MissionID.ToString())
             {
                 loot = Formula.Loot(ms.LootPackageID);
                 break;
@@ -64,10 +68,10 @@ public class CampaignResult_C : MonoBehaviour {
         LabelGem.text = lootGem.ToString();
 
         //数据传递 receive data
-        TimeSecond = (int)(GameManager.BC.TimeSecond);
-        InfectNum = GameManager.BC.InfectNum;
-        InfectKillNum = GameManager.BC.InfectKillNum;
-        ZombieKillNum = GameManager.BC.ZombieKillNum;
+        TimeSecond = (int)(BC.TimeSecond);
+        InfectNum = BC.InfectNum;
+        InfectKillNum = BC.InfectKillNum;
+        ZombieKillNum = BC.ZombieKillNum;
 
         LabelFlag.text = LocalizationEx.LoadLanguageTextName("BattleResult");
         LabelTime.text = LocalizationEx.LoadLanguageTextName("BattleTime");

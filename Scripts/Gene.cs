@@ -61,6 +61,8 @@ public class Gene : MonoBehaviour {
 	
 	public void CreateGene(string geneID)
     {
+		Battle = GameObject.Find(GameManager.BATTLE).GetComponent<Battle_C>();
+
         GeneID = geneID;
         //根据GeneID遍历查找基因
         foreach (BattleStrategy_Sheet bss in DataManager.BattleStrategy_Strategy)
@@ -89,7 +91,7 @@ public class Gene : MonoBehaviour {
         //State = GeneState.UnVisible;
 
         //设定位置
-		Pos = new Vector3((Column -HALF_COLUMN)* GameManager.BC.UpgradeMapWidth / WHOLE_COLUMN, - (Row - HALF_ROW) * GameManager.BC.UpgradeMapHeigth / WHOLE_ROW,1.0f);
+		Pos = new Vector3((Column -HALF_COLUMN)* Battle.UpgradeMapWidth / WHOLE_COLUMN, - (Row - HALF_ROW) * Battle.UpgradeMapHeigth / WHOLE_ROW,1.0f);
 
         //如果两个父节点都为0，则为初始可见的 if both father nodes are 0, it's visible
         if(FP1 == "0" && FP2 == "0")
@@ -145,7 +147,6 @@ public class Gene : MonoBehaviour {
                 {
                     if (FP1 == ga.GetComponent<Gene>().GeneID && ga.GetComponent<Gene>().IsUpgraded)
                     {
-                        Debug.Log("ga geneid 1=" + ga.GetComponent<Gene>().GeneID);
                         isFatherUnlocked_1 = true;
                         break;
                     }
@@ -162,7 +163,6 @@ public class Gene : MonoBehaviour {
                 {
                     if (FP2 == ga.GetComponent<Gene>().GeneID && ga.GetComponent<Gene>().IsUpgraded)
                     {
-                        Debug.Log("ga geneid 2=" + ga.GetComponent<Gene>().GeneID);
                         isFatherUnlocked_2 = true;
                         break;
                     }
@@ -187,13 +187,13 @@ public class Gene : MonoBehaviour {
                 IsUpgradable = false;
             }
 
-            //gameObject.SetActive(IsVisible);
-            Formula.Btn_IsVisible(gameObject, IsVisible);
+            gameObject.SetActive(IsVisible);
+            //Formula.Btn_IsVisible(gameObject, IsVisible);
         }
         else
         {
-            //gameObject.SetActive(false);
-            Formula.Btn_IsVisible(gameObject, false);
+            gameObject.SetActive(false);
+            //Formula.Btn_IsVisible(gameObject, false);
         }
     }
 
