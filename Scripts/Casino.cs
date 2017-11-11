@@ -23,6 +23,10 @@ public class Casino : MonoBehaviour {
     public GameObject AutoSpinBtn;
     public GameObject RechargeBtn;
 	public GameObject CasinoBackBtn;
+	public GameObject Tutorial1;
+	public GameObject Tutorial2;
+	public GameObject Tutorial3;
+	public GameObject Tutorial4;
     GameObject Audio_Spin;
     GameObject Audio_Scroll;
     GameObject Audio_ScrollEnd;
@@ -137,10 +141,7 @@ public class Casino : MonoBehaviour {
         UIEventListener.Get(H2PBtn).onClick = H2PBtn_onClick;
         UIEventListener.Get(CasinoBtn).onClick = CasinoBtn_onClick;
 		UIEventListener.Get(CasinoBackBtn).onClick = CasinoBackBtn_onClick;
-		Enter ();
-    }
 
-	public void Enter(){
 
 		LabelBetNum = GameObject.Find("LabelBetNum").GetComponent<UILabel>();
 		CurrentBet = Bet * Rank;
@@ -175,10 +176,31 @@ public class Casino : MonoBehaviour {
 
 		CheckSpinStatus ();
 
+		int oriWidth = Tutorial1.GetComponent<UISprite> ().width;
+		int oriHeight = Tutorial1.GetComponent<UISprite> ().height;
+		int desWidth = GameManager.StandardWidth / 4;
+		int desHeight = desWidth * oriHeight / oriWidth;
+		Debug.Log ("GameManager.StandardWidth = " + GameManager.StandardWidth);
+		Debug.Log ("desWidth = " + desWidth);
+		Debug.Log ("desHeight = " + desHeight);
+		Tutorial1.GetComponent<UISprite> ().width = desWidth;
+		Tutorial1.GetComponent<UISprite> ().height = desHeight;
+		Tutorial2.GetComponent<UISprite> ().width = desWidth;
+		Tutorial2.GetComponent<UISprite> ().height = desHeight;
+		Tutorial3.GetComponent<UISprite> ().width = desWidth;
+		Tutorial3.GetComponent<UISprite> ().height = desHeight;
+		Tutorial4.GetComponent<UISprite> ().width = desWidth;
+		Tutorial4.GetComponent<UISprite> ().height = desHeight;
+
+		Tutorial1.transform.localPosition = new Vector3 (-3 * desWidth / 2, 0);
+		Tutorial2.transform.localPosition = new Vector3 (-1 * desWidth / 2, 0);
+		Tutorial3.transform.localPosition = new Vector3 (desWidth / 2, 0);
+		Tutorial4.transform.localPosition = new Vector3 (desWidth * 3 / 2, 0);
+
 		HowToPlayPanel.SetActive(false);
 		SpinBtn.SetActive(true);
 		AutoSpinBtn.SetActive(false);
-	}
+    }
 
 	void CheckSpinStatus(){
 		if (GameManager.user.Gold <= CurrentBet) {
@@ -282,6 +304,7 @@ public class Casino : MonoBehaviour {
     {
         Debug.Log("H2PBtn");
         HowToPlayPanel.SetActive(true);
+
     }
 
     void CasinoBtn_onClick(GameObject go)
