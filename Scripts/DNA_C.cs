@@ -47,6 +47,9 @@ public class DNA_C : MonoBehaviour {
         //LabelGem.text = GameManager.user.Gem.ToString();
 
         LoadDNAData(DataManager.DNAUp_Virus);
+		DNA_VirusBtn.GetComponentInChildren<UILabel>().text = LocalizationEx.LoadLanguageTextName("Virus");//
+		DNA_HumanBtn.GetComponentInChildren<UILabel>().text = LocalizationEx.LoadLanguageTextName("Human");//
+		DNA_ZombieBtn.GetComponentInChildren<UILabel>().text = LocalizationEx.LoadLanguageTextName("Zombie");//
     }
 
     public void LoadDNAData(List<DNAUp_Sheet> sheet)

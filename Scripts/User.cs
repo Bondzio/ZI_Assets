@@ -6,8 +6,8 @@ using System;
 [Serializable]
 public class User
 {
-    const long INIT_GOLD = 9876;
-    const long INIT_GEM = 6789;
+    const long INIT_GOLD = 10000;
+    const long INIT_GEM = 100;
     //用户属性字段 user attribute
     public List<U_DNA>[] DB_u_dna = new List<U_DNA>[3]; //Index 0:Virus 1:Human 2:Zombie
 

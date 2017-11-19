@@ -195,6 +195,17 @@ public class Battle_C : MonoBehaviour {
 		UpgradeMapWidth = (int)GameObject.Find("UpgradeMapBG").GetComponent<UISprite>().width;
 		UpgradeMapHeigth = (int)GameObject.Find("UpgradeMapBG").GetComponent<UISprite>().height;
 
+		VirusUpBtn.GetComponentInChildren<UILabel>().text = LocalizationEx.LoadLanguageTextName("Virus");
+		HumanUpBtn.GetComponentInChildren<UILabel>().text = LocalizationEx.LoadLanguageTextName("Human");
+		ZombieUpBtn.GetComponentInChildren<UILabel>().text = LocalizationEx.LoadLanguageTextName("Zombie");
+
+		VirusProBar.GetComponentInChildren<UILabel>().text = LocalizationEx.LoadLanguageTextName("Virus");
+		HumanProBar.GetComponentInChildren<UILabel>().text = LocalizationEx.LoadLanguageTextName("Human");
+		ZombieProBar.GetComponentInChildren<UILabel>().text = LocalizationEx.LoadLanguageTextName("Zombie");
+
+		StrategyBtn.transform.GetChild (3).GetComponent<UILabel> ().text = LocalizationEx.LoadLanguageTextName("Upgrade");
+		EndBattleBtn.GetComponentInChildren<UILabel>().text = LocalizationEx.LoadLanguageTextName("Conclude");
+
 		Label_EvolutionDes = GameObject.Find("Label_EvolutionDes").GetComponent<UILabel>();
 		LabelEvolutionCost = GameObject.Find ("LabelEvolutionCost").GetComponent<UILabel> ();
 		LabelSpeed = GameObject.Find("LabelSpeed").GetComponent<UILabel>();

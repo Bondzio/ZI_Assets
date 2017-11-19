@@ -17,6 +17,7 @@ public class GameManager :MonoBehaviour {
     public const string CAMPAIGNRESULT = "CampaignResult";
     public const string BATTLE = "Battle";
 	//public const string CASINO = "Casino";
+	public const string PPURL = "https://sites.google.com/view/dream-road/";
 
     //public static CurrLanguage;       //用户语言类型
     public static User user;            //用户数据

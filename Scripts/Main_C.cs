@@ -15,6 +15,7 @@ public class Main_C : MonoBehaviour {
     public GameObject Main_DNABtn;
     public GameObject Main_OptionBtn;
     public GameObject Main_ShopBtn;
+	public GameObject Main_PrivacyPolicyBtn;
 
     private void Start()
     {
@@ -23,6 +24,7 @@ public class Main_C : MonoBehaviour {
         UIEventListener.Get(Main_DNABtn).onClick = Main_DNABtn_Click;
         UIEventListener.Get(Main_OptionBtn).onClick = Main_OptionBtn_Click;
         UIEventListener.Get(Main_ShopBtn).onClick = Main_ShopBtn_Click;
+		UIEventListener.Get(Main_PrivacyPolicyBtn).onClick = Main_PrivacyPolicyBtn_Click;
 		float factor = Screen.width / GameManager.StandardWidth;
 		//Gold.transform.localScale = new Vector3(factor, factor, 1);
 		//Gem.transform.localScale = new Vector3(factor, factor, 1);
@@ -32,6 +34,12 @@ public class Main_C : MonoBehaviour {
     {
         LabelGold.text = GameManager.user.Gold.ToString();
         LabelGem.text = GameManager.user.Gem.ToString();
+
+		Main_StartBtn.GetComponentInChildren<UILabel>().text = LocalizationEx.LoadLanguageTextName("Start");
+		Main_CasinoBtn.GetComponentInChildren<UILabel>().text = LocalizationEx.LoadLanguageTextName("Luck");
+		Main_DNABtn.GetComponentInChildren<UILabel>().text = LocalizationEx.LoadLanguageTextName("Upgrade");
+		Main_OptionBtn.GetComponentInChildren<UILabel>().text = LocalizationEx.LoadLanguageTextName("Option");
+		Main_ShopBtn.GetComponentInChildren<UILabel>().text = LocalizationEx.LoadLanguageTextName("Shop");//
     }
 
     public void Main_StartBtn_Click(GameObject button)
@@ -67,4 +75,8 @@ public class Main_C : MonoBehaviour {
         Debug.Log("ShopBtn_Click");
         GameManager.ChangePanel(GameManager.UIS[GameManager.MAIN], GameManager.UIS[GameManager.SHOP],0);
     }
+
+	public void Main_PrivacyPolicyBtn_Click(GameObject b){
+		Application.OpenURL (GameManager.PPURL);
+	}
 }

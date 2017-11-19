@@ -24,6 +24,9 @@ public class DNACell : MonoBehaviour {
         DNA_C = GameObject.Find(GameManager.DNA).GetComponent<DNA_C>();
         UIEventListener.Get(GoldUpgradeBtn).onClick = GoldUpgrade_Click;
         UIEventListener.Get(GemUpgradeBtn).onClick = GemUpgrade_Click;
+
+		GoldUpgradeBtn.GetComponentInChildren<UILabel>().text = LocalizationEx.LoadLanguageTextName("Upgrade");//
+		GemUpgradeBtn.GetComponentInChildren<UILabel>().text = LocalizationEx.LoadLanguageTextName("Upgrade");//
     }
 
     public void GoldUpgrade_Click(GameObject go)
